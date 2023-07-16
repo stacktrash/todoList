@@ -23,13 +23,14 @@ app.get("/", function(req, res) {
 
   res.render("list", {
     KindofDay: day
-  }) //renders list file, sends day to KindofDay variabke
+  }) //The res.render() function is used to render a view and sends the rendered HTML string to the client. 
 
 });
 
 app.post("/", function(req, res) {
   var item = req.body.newItem
-  console.log(item)
+  res.render("list", {newListItem: item
+  })
 })
 
 app.listen(3000, function() {
