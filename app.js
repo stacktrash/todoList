@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+var items = []; //array that holds new items. w/o this we just rewrite the last item in the list
 const app = express();
 app.set('view engine', 'ejs'); //use ejs as view engine
 app.use(bodyParser.urlencoded({
@@ -22,15 +23,15 @@ app.get("/", function(req, res) {
 
 
   res.render("list", {
-    KindofDay: day
-  }) //The res.render() function is used to render a view and sends the rendered HTML string to the client. 
+    KindofDay: day, newListItem: items
+  }) //The res.render() function is used to render a view and sends the rendered HTML string to the client.
 
 });
 
 app.post("/", function(req, res) {
   var item = req.body.newItem
-  res.render("list", {newListItem: item
-  })
+  items.push(item); //pushes item to list every refresh
+  res.redirect("/"); //redirects us to homepage to refresh for our new item
 })
 
 app.listen(3000, function() {
