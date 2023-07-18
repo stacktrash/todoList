@@ -22,9 +22,11 @@
 
         </div>
       <%}%>
-      <form class= "input" action="/" method="post">
+      <form class= "input" action="/" method="post"> <!--// anytime a post request is made, we redirect to "/",
+        // when using ejs templates and sending input to /work, we must -->
         <input type="text" name="newItem" value="" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="button">+</button>
+        <button type="submit" name="list" value= <%= listTitle%>>+</button><!--/here we changed name="button" -> name="list" and gave it a value that
+        was dynamic using ejs-->
 
     </div>
 

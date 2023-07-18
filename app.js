@@ -30,14 +30,24 @@ app.get("/", function(req, res) {
   }) //The res.render() function is used to render a view and sends the rendered HTML string to the client.
 
 });
-app.post("/", function(req, res){
-  console.log(req.body);
+app.post("/", function(req, res){// work input jumps us to this code, so we use a if statement to mitigate it
+  //using the fact that button gives "work" as an output.
+
   let item = req.body.newItem;
+  console.log(req.body.list);
+  if (req.body.list === "Work"){
+    workItems.push(item);
+    res.redirect("/work");
+    // here if "work" is a value for button we push the item to workItems and redirect to /work
+  }
+  else{
+    items.push(item);
+    res.redirect("/");
+  }
 
 
-  items.push(item);
 
-  res.redirect("/");
+
 })
 
 app.get("/work", function(req, res){
